@@ -21,7 +21,7 @@ systemctl start tomcat
 
 #zabbix Agent
 rpm -Uvh https://repo.zabbix.com/zabbix/4.2/rhel/7/x86_64/zabbix-release-4.2-1.el7.noarch.rpm
-yum install -y zabbix-agent
+yum install -y zabbix-agent zabbix-sender
 ZABBIX_AGENT_CONF="/etc/zabbix/zabbix_agentd.conf";
 ZABBIX_SERVER="192.168.0.50";
 echo "ListenPort=10050" >> $ZABBIX_AGENT_CONF
