@@ -1,0 +1,29 @@
+Vagrant.configure(2) do |config|
+  config.vm.define "zabbix", primary: true do |zab|
+    zab.vm.box = "sbeliakou/centos"
+    zab.vm.box_check_update = false
+    zab.vm.hostname = "zabbix"
+    zab.vm.network "private_network", ip: "192.168.0.50"
+    zab.vm.define "zabbix"
+    zab.vm.provider "virtualbox" do |vb|
+      vb.gui = false
+      vb.memory = "1024"
+      vb.name = "zabbix"
+    end
+    zab.vm.provision :shell, :path => "install_zabbix_server.sh"
+  end
+
+  config.vm.define "webserver", primary: true do |wb|
+    wb.vm.box = "sbeliakou/centos"
+    wb.vm.box_check_update = false
+    wb.vm.hostname = "webserver"
+    wb.vm.network "private_network", ip: "192.168.0.51"
+    wb.vm.define "webserver"
+    wb.vm.provider "virtualbox" do |vb|
+      vb.gui = false
+      vb.memory = "1024"
+      vb.name = "webserver"
+    end
+    wb.vm.provision :shell, :path => "install_webserver.sh"
+  end
+end
