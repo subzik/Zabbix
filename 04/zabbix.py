@@ -52,7 +52,7 @@ auth_token = post({
     },
     "auth": None,
     "id": 0}
-).json()["result"]
+    ).json()["result"]
 
 
 def add_hostgroups(zabbix_hostgroup):
